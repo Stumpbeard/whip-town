@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://background.png" type="Texture" id=2]
+[ext_resource path="res://ChatUI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Game.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 899.375, 21 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 178, 20 )
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Map" type="StaticBody2D" parent="."]
+position = Vector2( 1024, 240 )
+
+[node name="Sprite" type="Sprite" parent="Map"]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map"]
+position = Vector2( -125, 165 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Map"]
+position = Vector2( 530, 132 )
+shape = SubResource( 2 )
+
+[node name="Players" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ChatUI" parent="CanvasLayer" instance=ExtResource( 3 )]
+
+[connection signal="child_entered_tree" from="Players" to="." method="_on_Players_child_entered_tree"]
