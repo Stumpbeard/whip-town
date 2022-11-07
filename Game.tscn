@@ -1,14 +1,22 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
+[ext_resource path="res://Stair.tscn" type="PackedScene" id=1]
 [ext_resource path="res://background.png" type="Texture" id=2]
 [ext_resource path="res://ChatUI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Game.gd" type="Script" id=4]
+[ext_resource path="res://sounds/3 - Beginning (Block-1).mp3" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 899.375, 21 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 178, 20 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 128, 16 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 93, 202 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 4 )
@@ -27,10 +35,90 @@ shape = SubResource( 1 )
 position = Vector2( 530, 132 )
 shape = SubResource( 2 )
 
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Map"]
+position = Vector2( -128, 32 )
+shape = SubResource( 3 )
+one_way_collision = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Map"]
+position = Vector2( -1117, 14 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Map"]
+position = Vector2( 573, 7 )
+shape = SubResource( 4 )
+
+[node name="Stair" parent="." instance=ExtResource( 1 )]
+position = Vector2( 672, 376 )
+
+[node name="Stair9" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1120, 376 )
+flipped = true
+
+[node name="Stair10" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1104, 360 )
+flipped = true
+
+[node name="Stair11" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1088, 344 )
+flipped = true
+
+[node name="Stair12" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1072, 328 )
+flipped = true
+
+[node name="Stair13" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1056, 312 )
+flipped = true
+
+[node name="Stair14" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1040, 296 )
+flipped = true
+
+[node name="Stair15" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1024, 280 )
+flipped = true
+
+[node name="Stair16" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1008, 264 )
+flipped = true
+
+[node name="Stair2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 688, 360 )
+
+[node name="Stair3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 704, 344 )
+
+[node name="Stair4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 720, 328 )
+
+[node name="Stair5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 736, 312 )
+
+[node name="Stair6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 752, 296 )
+
+[node name="Stair7" parent="." instance=ExtResource( 1 )]
+position = Vector2( 768, 280 )
+
+[node name="Stair8" parent="." instance=ExtResource( 1 )]
+position = Vector2( 784, 264 )
+
 [node name="Players" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ChatUI" parent="CanvasLayer" instance=ExtResource( 3 )]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="OSTBeginning" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -10.0
 
 [connection signal="child_entered_tree" from="Players" to="." method="_on_Players_child_entered_tree"]
+[connection signal="child_exiting_tree" from="Players" to="." method="_on_Players_child_exiting_tree"]
